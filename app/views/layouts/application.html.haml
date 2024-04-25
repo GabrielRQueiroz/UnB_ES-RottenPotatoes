@@ -2,9 +2,21 @@
   %head
     %title UnBEsRottenPotatoes! 
     = stylesheet_link_tag 'application'
-    -# = javascript_include_tag 'application'
+    = javascript_importmap_tags
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
   %body
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    
+    - if flash[:warning]
+      #warning.message= flash[:warning]
+
+    %nav
+      %ul
+        %li#logo= link_to "RottenPotatoes", movies_path
+        %li#create= link_to "+", new_movie_path
+    
     #main
       = yield
