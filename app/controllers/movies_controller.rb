@@ -5,14 +5,16 @@ class MoviesController < ApplicationController
   end
 
   def show
-    begin
-      id = params[:id]
-      @movie = Movie.find(id)
-    rescue ActiveRecord::RecordNotFound
-      flash[:warning] = 'Movie not found.'
-      redirect_to movies_path
-    end
+    id = params[:id]
+    @movie = Movie.find(id)
+  rescue ActiveRecord::RecordNotFound
+    flash[:warning] = 'Movie not found.'
+    redirect_to movies_path
+  end
 
+  def find_by_title
+    title = params[:title]
+    @movies = Movie.find(title)
   end
 
   def new
@@ -46,6 +48,11 @@ class MoviesController < ApplicationController
 
     flash[:notice] = "Movie '#{@movie.title}' deleted."
 
+    redirect_to movies_path
+  end
+
+  def search_tmdb
+    flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb"
     redirect_to movies_path
   end
 

@@ -46,6 +46,9 @@ gem 'bootsnap', require: false
 # use HAML for templates
 gem 'haml'
 
+gem "tailwindcss-rails", "~> 2.6"
+gem "cssbundling-rails", "~> 1.4"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -65,4 +68,13 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails-training-wheels'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'rspec'
 end
